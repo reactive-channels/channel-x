@@ -1,0 +1,20 @@
+{
+  "name": "mono",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dotan Talitman <talitmandotan@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --base=./app2/index.html",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^3.1.0"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {},
+  "description": ""
+}
