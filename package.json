@@ -1,5 +1,4 @@
 {
-  "name": "mono",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Dotan Talitman <talitmandotan@gmail.com>",
@@ -15,6 +14,7 @@
   "workspaces": [
     "apps/*"
   ],
+  "private":"false",
   "devDependencies": {},
   "description": ""
 }
