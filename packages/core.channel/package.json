@@ -1,0 +1,9 @@
+{
+  "name": "@channel-x/core-channel",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "rxjs": "^7.5.6"
+  }
+}
