@@ -1,0 +1,25 @@
+{
+    "name": "@channel-x/vue-channel",
+    "version": "0.0.1",
+    "type": "module",
+    "main": "./dist/packages/vue-channel/index.umd.js",
+    "module": "./dist/packages/vue-channel/index.es.js",
+    "exports": {
+        ".": {
+            "import": "./dist/packages/vue-channel/index.es.js",
+            "require": "./dist/packages/vue-channel/index.umd.js"
+        }
+    },
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "author": "",
+    "license": "MIT",
+    "scripts": {
+        "pack:lib": "vite build",
+        "packme": "npm pack"
+    },
+    "devDependencies": {
+        "@types/node": "16.11.7"
+    }
+}
