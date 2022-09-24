@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/packages/vue.channel/types",
     "declaration": true,
-    "types": ["vue-i18n", "node","vue"], 
+    "types": [ "node","vue"], 
     "noFallthroughCasesInSwitch": true
   },
   "include": [
