@@ -20,13 +20,13 @@
 </template>
 
 <script lang="ts" setup>
-import { Channel } from '@channelx/vue-channel';
-import Left from '../components/Left/Left.vue';
-import Right from '../components/Right/Right.vue';
-import { useStore } from '../store';
+import { Channel } from "@channel-x/vue-channel";
+import Left from "../components/Left/Left.vue";
+import Right from "../components/Right/Right.vue";
+import { useStore } from "../store";
 const { cookiesAccepted } = useStore();
-Channel.use('data').publish('hello');
-Channel.use('items').publish('item1');
+Channel.use("data").publish("hello");
+Channel.use("items").publish("item1");
 </script>
 
 <style>

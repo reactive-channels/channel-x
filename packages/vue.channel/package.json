@@ -17,9 +17,13 @@
     "license": "MIT",
     "scripts": {
         "pack:lib": "vite build",
-        "packme": "npm pack"
+        "packme": "npm pack",
+        "dev": "vite"
     },
     "devDependencies": {
         "@types/node": "16.11.7"
+    },
+    "dependencies": {
+        "vue-router": "^4.1.5"
     }
 }

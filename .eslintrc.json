@@ -1,23 +1,13 @@
 {
-  "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "extends":[
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+  ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": [],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": [],
-      "rules": {}
-    }
-  ]
+  "overrides": []
 }

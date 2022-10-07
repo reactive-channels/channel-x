@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import { Channel } from '@channelx/vue-channel';
-const data = '1';
+import { Channel } from "@channel-x/vue-channel";
+const data = "1";
 const send = () => {
   // emitter.publish('emitted');
   //   Channel.use('emitter').publish('emit');
-  Channel.emit('hey');
+  Channel.emit("hey");
 };
 </script>

@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Channel } from '@channelx/vue-channel';
+import { Channel } from "@channel-x/vue-channel";
 
 const props = defineProps({
   content: { type: Object, require: true },
@@ -34,23 +34,23 @@ const showComponent = (item: any) => {
   // const org_html = item.el.innerHTML;
   // const new_html = "<div class='overlay'>" + org_html + '</div>';
   // item.el.innerHTML = new_html;
-  item.el.classList.add('overlay');
+  item.el.classList.add("overlay");
   const rect = item.el.getBoundingClientRect();
   item.el.setAttribute(
-    'data-component-info',
+    "data-component-info",
     item.componentName.toUpperCase() +
-      ' ( ' +
+      " ( " +
       (rect.width % 1 ? rect.width.toFixed(2) : rect.width) +
-      ' X ' +
+      " X " +
       (rect.height % 1 ? rect.height.toFixed(2) : rect.height) +
-      ' ) '
+      " ) "
   );
   // item.el.insertBefore
 };
 const mouseleaveComponent = (item: any) => {
   //item.el.style = item.oldStyle;
-  item.el.classList.remove('overlay');
-  item.el.removeAttribute('data-component-info');
+  item.el.classList.remove("overlay");
+  item.el.removeAttribute("data-component-info");
 };
 // const showChannel = (channel) => {
 //   Channel.innerUse('devtool.channels').publish({
@@ -59,7 +59,7 @@ const mouseleaveComponent = (item: any) => {
 // };
 
 const showInfo = (info) => {
-  Channel.innerUse('devtool.info').publish(info.instance);
+  Channel.innerUse("devtool.info").publish(info.instance);
   //console.log('info', info.instance.setupState);
 };
 </script>

@@ -17,9 +17,10 @@
       "paths": {
         "@channel-x/core-channel": ["packages/core.channel/src/index.ts"],
         "@channel-x/react-channel": ["packages/react.channel/src/index.ts"],
-        "@channel-x/vue-channel": ["packages/vue.channel/src/index.ts"]
+        "@channel-x/vue-channel": ["packages/vue.channel/src/index.ts"],
+        "@channel-x/devtools": ["packages/devtools.channel/src/index.ts"],
       }
     },
-    "exclude": ["node_modules", "tmp"]
+    "exclude": ["node_modules"]
   }
   

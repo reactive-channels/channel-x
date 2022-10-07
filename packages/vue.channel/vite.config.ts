@@ -26,7 +26,7 @@ export default defineConfig({
     },
     outDir: path.resolve(__dirname, "./dist"),
     rollupOptions: {
-      external: ["vue", "typescript", "@channelx/core-channel"],
+      external: ["vue", "typescript", "@channel-x/core-channel"],
       output: {
         // Provide global variables to use in the UMD build
         // Add external deps here

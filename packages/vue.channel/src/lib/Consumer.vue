@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import { Channel } from '@channelx/core-channel';
-import { defineComponent, onMounted } from 'vue';
+import { Channel } from "@channel-x/core-channel";
+import { defineComponent, onMounted } from "vue";
 export default defineComponent({
-  name: 'ConsumerComponent',
+  name: "ConsumerComponent",
   props: {
     msg: String,
     queue: String,
@@ -18,14 +18,14 @@ export default defineComponent({
   },
   data() {
     return {
-      val: '',
-      q: Channel.use(this.queue || ''),
+      val: "",
+      q: Channel.use(this.queue || ""),
     };
   },
 
   created() {
     this.q.consume((x: any) => {
-      this.$emit('data', x);
+      this.$emit("data", x);
       this.val = x;
     });
   },

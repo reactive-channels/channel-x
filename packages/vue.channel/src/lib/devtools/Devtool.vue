@@ -49,42 +49,42 @@
 </template>
 
 <script lang="ts">
-import { Channel } from '@channelx/vue-channel';
-import { filter, map, tap } from 'rxjs/operators';
-import { reactive, ref } from 'vue';
-import Queues from './components/Queues.vue';
-import { groupByComponentsAndChannels } from './internal';
-import { mapMetaData } from './mappers';
+import { Channel } from "@channel-x/vue-channel";
+import { filter, map, tap } from "rxjs/operators";
+import { reactive, ref } from "vue";
+import Queues from "./components/Queues.vue";
+import { groupByComponentsAndChannels } from "./internal";
+import { mapMetaData } from "./mappers";
 </script>
 
 <script lang="ts" setup>
 const group = reactive({
   consumers: {
     components: {},
-    name: '',
+    name: "",
   },
   publishers: {
     components: {},
-    name: '',
+    name: "",
   },
 });
 
-const { msg: queues } = Channel.innerUse('devtool.info').pipe(
+const { msg: queues } = Channel.innerUse("devtool.info").pipe(
   map((x: any) => ({ state: mapMetaData(x.setupState), instance: x })),
-  tap((x) => console.log('dataaaa', x))
+  tap((x) => console.log("dataaaa", x))
 ).consumer;
 
-const channelInfo = reactive({ channel: '' });
-Channel.innerUse('devtool.channels').consume((x) => {
+const channelInfo = reactive({ channel: "" });
+Channel.innerUse("devtool.channels").consume((x) => {
   channelInfo.channel = x;
 });
 
-const currentTab = ref('publishers');
+const currentTab = ref("publishers");
 
 const show = (item) => {
-  console.log('Channel.settings', Channel.settings);
+  console.log("Channel.settings", Channel.settings);
 };
-Channel.innerUse('devtool')
+Channel.innerUse("devtool")
   .pipe(filter((item: any) => item.info))
   .consume((q) => {
     setTimeout(() => groupByComponentsAndChannels(q.info, group, q.name), 0);

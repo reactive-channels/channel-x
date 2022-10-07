@@ -9,18 +9,18 @@
 </template>
 
 <script lang="ts" setup>
-import { Channel } from '@channelx/vue-channel';
-import { ref } from 'vue';
+import { Channel } from "@channel-x/vue-channel";
+import { ref } from "vue";
 
-const queueName = 'data';
-const msg = ref('msg');
-const d = ref('ddd');
+const queueName = "data";
+const msg = ref("msg");
+const d = ref("ddd");
 const right = true;
-Channel.use('data').consume((data) => {
+Channel.use("data").consume((data) => {
   msg.value = data;
 });
 
-Channel.use('newChannel').publish('sup');
+Channel.use("newChannel").publish("sup");
 // const emitter: any = Channel.emitter;
 </script>
 

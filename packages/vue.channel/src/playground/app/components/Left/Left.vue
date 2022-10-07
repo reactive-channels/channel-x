@@ -2,11 +2,11 @@
   <div class="left">{{ msg }}</div>
 </template>
 <script lang="ts" setup>
-import { Channel } from '@channelx/vue-channel';
+import { Channel } from "@channel-x/vue-channel";
 const props = defineProps({
   qData1: Object,
 });
-const { msg } = Channel.use('data').consumer;
+const { msg } = Channel.use("data").consumer;
 </script>
 
 <!--<style>

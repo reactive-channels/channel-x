@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { Channel } from '@channelx/vue-channel';
+import { Channel } from "@channel-x/vue-channel";
 
 export default {
   setup() {
-    const { msg } = Channel.use('items').consumer;
+    const { msg } = Channel.use("items").consumer;
     return { msg };
   },
 };
