@@ -6,9 +6,9 @@
 <script lang="ts" setup>
 import Tabs from "./internal/components/tabs/Tabs.vue";
 const tabs = [
-  { title: "Channels", content: { name: "1" } },
-  { title: "Messages", content: { name: "2" } },
-  { title: "Settings", content: { name: "3" } },
+  { type: "Components", content: { name: "1" } },
+  { type: "Channels", content: { name: "2" } },
+  { type: "Broker", content: { name: "3" } },
 ];
 </script>
 
