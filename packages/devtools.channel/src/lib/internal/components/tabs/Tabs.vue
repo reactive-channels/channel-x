@@ -2,17 +2,17 @@
   <div class="tabs">
     <div class="tabs__header">
       <div
-        v-for="(tab, index) in tabs"
+        v-for="(tab, index) in items"
         :key="index"
         class="tabs__header__tab"
         :class="{ 'tabs__header__tab--active': index === activeTab }"
         @click="activeTab = index"
       >
-        {{ tab }}
+        {{ tab.title }}
       </div>
     </div>
     <div class="tabs__content">
-      {{ tabs[activeTab] }}
+      {{ items[activeTab].content }}
     </div>
   </div>
 </template>
@@ -41,7 +41,12 @@
 }
 </style>
 <script lang="ts" setup>
-import { ref } from "vue";
-const tabs = ["Events", "State", "Actions"];
+import { PropType, ref } from "vue";
 const activeTab = ref(0);
+const props = defineProps({
+  items: {
+    type: Array as PropType<any[]>,
+    required: true,
+  },
+});
 </script>
