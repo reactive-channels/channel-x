@@ -1,9 +1,8 @@
-import { ReplaySubject, Subject } from "rxjs";
 import { Channel } from "../Channel";
 // export const brokerQueue: BehaviorSubject<any> = new BehaviorSubject({
 //   firstMesseage: 'hey',
 // });
-export const brokerQueue: Subject<any> = new ReplaySubject(20);
+//export const brokerQueue: Subject<any> = new ReplaySubject(20);
 export function notify(
   target: object,
   key: string | symbol,
@@ -17,5 +16,6 @@ export function notify(
   //   value,
   //   oldValue,
   // });
+
   Channel.innerUse("devtool").publish(value);
 }

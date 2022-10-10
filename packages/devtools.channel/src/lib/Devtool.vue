@@ -4,12 +4,20 @@
   </div>
 </template>
 <script lang="ts" setup>
-import Tabs from "./internal/components/tabs/Tabs.vue";
-const tabs = [
-  { type: "Components", content: { name: "1" } },
-  { type: "Channels", content: { name: "2" } },
-  { type: "Broker", content: { name: "3" } },
-];
+import { Channel } from "@channel-x/core-channel";
+import { ref } from "vue";
+import Tabs from "./internal/modules/tabs/Tabs.vue";
+const tabs = ref([{}]);
+Channel.innerUse("devtool").consume((data) => {
+  console.log("data", data);
+  setTimeout(() => {
+    tabs.value = [
+      { type: "Components", content: data.devtools.components },
+      { type: "Channels", content: { name: "2" } },
+      { type: "Broker", content: { name: "3" } },
+    ];
+  }, 0);
+});
 </script>
 
 <style scoped>

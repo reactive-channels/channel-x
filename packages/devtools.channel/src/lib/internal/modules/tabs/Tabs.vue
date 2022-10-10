@@ -5,7 +5,10 @@
       :active-tab="activeTab"
       @set-active-tab="setActiveTab"
     />
-    <Tab :type="items[activeTab].type">{{ items[activeTab].content }}</Tab>
+    <Tab
+      :content="items[activeTab].content"
+      :type="items[activeTab].type"
+    ></Tab>
   </div>
 </template>
 <script lang="ts" setup>

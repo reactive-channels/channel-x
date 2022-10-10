@@ -12,9 +12,7 @@ import { HttpInfo } from "./types/HttpInfo";
 import { QueueItem } from "./types/QueueItem";
 import { QueuesContainer } from "./types/QueuesContainer";
 import { SubjectOptions } from "./utils/rx.utils";
-export interface Todo {
-  title: string;
-}
+
 export class Channel {
   private static readonly INIT_VALUE = `INIT_VALUE${new Date().valueOf()}`;
   // private static readonly INIT_VALUE = Symbol('INIT_VALUE');

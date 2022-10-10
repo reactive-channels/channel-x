@@ -22,7 +22,6 @@
 </template>
 <script lang="ts" setup>
 import { Channel } from "@channel-x/vue-channel";
-
 const props = defineProps({
   content: { type: Object, require: true },
 });

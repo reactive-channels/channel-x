@@ -7,7 +7,7 @@
       :class="{ 'tabs__header__tab--active': index === activeTab }"
       @click="setActiveTab(index)"
     >
-      {{ tab.toUpperCase() }}
+      {{ tab?.toUpperCase() }}
     </div>
   </div>
 </template>

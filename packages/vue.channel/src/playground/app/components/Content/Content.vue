@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Channel } from "@channel-x/core-channel";
+import { Channel } from "@channel-x/vue-channel";
 
 let data = "";
 const save = () => {

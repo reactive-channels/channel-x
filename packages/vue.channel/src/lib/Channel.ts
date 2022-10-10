@@ -15,6 +15,7 @@ import { InfoType } from "./types/InfoType";
 
 export class Channel extends CoreChannel {
   private componentInfo!: ComponentInfo;
+  private devtools: any;
   // public static queues :any= reactive(Channel.queues);
   public static use(queueName: string, options?: any): Channel {
     onMounted(() => {
@@ -175,6 +176,7 @@ export class Channel extends CoreChannel {
       stream.unsubscribe();
       // console.log('onBeforeUnmount');
     });
+    ``;
   }
 
   public get consumer() {

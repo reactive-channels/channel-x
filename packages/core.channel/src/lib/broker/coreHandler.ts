@@ -1,4 +1,4 @@
-import { notify } from './notify';
+import { notify } from "./notify";
 
 function createSetter(shallow = false) {
   return function set(
