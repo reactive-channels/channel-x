@@ -5,10 +5,11 @@
         class="components__zone__item"
         v-for="(item, key, index) in components"
         :key="key"
+        @click="showInfo(item)"
       >
         <div>
           <!-- <span>&lt</span> -->
-          {{ item.componentName }}
+          {{ item.info.componentName }}
           <!-- <span>/></span> -->
           <sup class="components__zone__item_sup"> {{ item.uid }}</sup>
         </div>
@@ -26,10 +27,17 @@ const props = defineProps({
     required: true,
   },
 });
+const emit = defineEmits<{
+  (eventName: "component-info", info: any): void;
+}>();
 
 watchEffect(() => {
+  console.log("props.content", props.content);
   components.value = { ...components.value, ...props.content };
 });
+const showInfo = (item: any) => {
+  emit("component-info", item);
+};
 const tabs = [
   { type: "PUBLISHERS", content: { name: "1" } },
   { type: "CONSUMERS", content: { name: "2" } },
@@ -49,6 +57,7 @@ const tabs = [
   flex: 1;
   background: #8b6a88;
   box-shadow: 0px 0px 1px black;
+  z-index: -999999;
 }
 .components__zone {
   display: flex;

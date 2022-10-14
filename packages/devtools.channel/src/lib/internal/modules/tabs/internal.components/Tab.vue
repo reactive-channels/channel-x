@@ -1,7 +1,12 @@
 <template>
   <div class="tabs__content">
     <KeepAlive>
-      <component :content="content" :is="scope"> </component>
+      <component
+        @component-info="onComponentInfo"
+        :content="boundedContext"
+        :is="scope"
+      >
+      </component>
     </KeepAlive>
   </div>
 </template>
@@ -20,6 +25,14 @@ const props = defineProps({
     required: true,
   },
 });
+const boundedContext = computed(() =>
+  props.type ? props.content[props.type.toLowerCase()] : {}
+);
+const onComponentInfo = (info) => {
+  const devtools = props.content;
+  const component = devtools.components[info.uid];
+  console.log("component", info);
+};
 </script>
 <style scoped>
 .tabs__content {

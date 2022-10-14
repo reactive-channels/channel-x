@@ -1,23 +1,28 @@
 import { ComponentInternalInstance } from "vue";
-import { QueueItem } from "./../../../../core.channel/src/lib/types/QueueItem";
 import { getComponentInfo } from "./getComponentInfo";
 
 export function setQueueInfo(
-  queue: QueueItem,
+  queues: any,
   queueName: string,
   instance: ComponentInternalInstance,
-  infoType: any
+  channelType: any
 ) {
-  const componentData = getComponentInfo(instance, queueName);
-  queue.info = queue.info || {};
+  const queue: any = queues[queueName];
+  const componentData: any = getComponentInfo(instance, queueName);
+  const COMPONENT_KEY = `${componentData.componentName}(uid:${componentData.uid})`;
+  queue.devtools = queue.devtools || { components: {}, channels: {} };
   queue.platform = "VUE";
-  queue.devtools = queue.devtools || { components: {} };
-  queue.devtools.components[
-    `${componentData.componentName}(uid:${componentData.uid})`
-  ] = componentData;
-  queue.name = queueName;
-  queue.info[infoType] = queue.info[infoType] || {};
-  queue.info[infoType][
-    `${componentData.componentName}(uid:${componentData.uid})`
-  ] = componentData;
+  // queue.name = queueName;
+  queue.devtools.components[COMPONENT_KEY] = queue.devtools.components[
+    COMPONENT_KEY
+  ] || { info: {}, channels: {} };
+  queue.devtools.components[COMPONENT_KEY].info = componentData;
+  queue.devtools.components[COMPONENT_KEY].channels[channelType] =
+    queue.devtools.components[COMPONENT_KEY].channels[channelType] || [];
+  queue.devtools.components[COMPONENT_KEY].channels[channelType].push(
+    queueName
+  );
+  const channelInfo = queue.devtools.channels[channelType] || {};
+  queue.devtools.channels[channelType] = channelInfo;
+  queue.devtools.channels[channelType][COMPONENT_KEY] = componentData;
 }

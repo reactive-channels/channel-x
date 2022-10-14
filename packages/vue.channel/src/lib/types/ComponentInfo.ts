@@ -1,4 +1,4 @@
-import { ComponentInternalInstance, RendererNode, VNode } from 'vue';
+import { ComponentInternalInstance, RendererNode, VNode } from "vue";
 
 export interface ComponentInfo {
   filePath: string;

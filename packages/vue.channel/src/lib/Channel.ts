@@ -1,5 +1,4 @@
 import { Channel as CoreChannel } from "@channel-x/core-channel";
-import { QueueItem } from "packages/core.channel/src/lib/types/QueueItem";
 import { BehaviorSubject, ReplaySubject, Subscription } from "rxjs";
 import {
   ComponentInternalInstance,
@@ -86,10 +85,10 @@ export class Channel extends CoreChannel {
     //console.log('vue 3');
   }
 
-  private setInfo(infoType: InfoType, queue: QueueItem, queueName: string) {
+  private setInfo(infoType: InfoType) {
     const instance = getCurrentInstance();
     if (instance) {
-      setQueueInfo(queue, queueName, instance, infoType);
+      setQueueInfo(this.queues, this.queueName, instance, infoType);
     } else {
       console.error("instance is undefined");
     }
@@ -125,7 +124,7 @@ export class Channel extends CoreChannel {
     onMounted(() => {
       const instance = getCurrentInstance();
       if (instance) this.replaceEmitterQueue(instance);
-      this.setInfo(type, this.queues[this.queueName], this.queueName);
+      this.setInfo(type);
     });
   }
 
@@ -144,11 +143,7 @@ export class Channel extends CoreChannel {
   public publish<T>(msg?: T, cb?: VoidFunction): Promise<any> {
     onMounted(() => {
       // this.replaceEmitterQueue(getCurrentInstance());
-      this.setInfo(
-        InfoType.PUBLISHERS,
-        this.queues[this.queueName],
-        this.queueName
-      );
+      this.setInfo(InfoType.PUBLISHERS);
     });
     return super.publish(msg, cb);
   }
@@ -161,11 +156,7 @@ export class Channel extends CoreChannel {
     //  const msg = ref('');
     let stream: Subscription | any;
     onMounted(() => {
-      this.setInfo(
-        InfoType.CONSUMERS,
-        this.queues[this.queueName],
-        this.queueName
-      );
+      this.setInfo(InfoType.CONSUMERS);
     });
 
     //console.log('el', this.componentInfo?.instance.vnode.el);
@@ -189,11 +180,7 @@ export class Channel extends CoreChannel {
       msg.value = x;
     });
     onMounted(() => {
-      this.setInfo(
-        InfoType.CONSUMERS,
-        this.queues[this.queueName],
-        this.queueName
-      );
+      this.setInfo(InfoType.CONSUMERS);
     });
     onBeforeUnmount(() => {
       stream.unsubscribe();

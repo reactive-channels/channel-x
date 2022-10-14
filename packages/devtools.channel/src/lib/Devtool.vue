@@ -12,9 +12,9 @@ Channel.innerUse("devtool").consume((data) => {
   console.log("data", data);
   setTimeout(() => {
     tabs.value = [
-      { type: "Components", content: data.devtools.components },
-      { type: "Channels", content: { name: "2" } },
-      { type: "Broker", content: { name: "3" } },
+      { type: "Components", content: data.devtools },
+      { type: "Channels", content: data.devtools },
+      { type: "Broker", content: data.devtools },
     ];
   }, 0);
 });

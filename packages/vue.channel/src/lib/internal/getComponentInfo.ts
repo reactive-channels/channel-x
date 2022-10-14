@@ -1,16 +1,16 @@
-import { ComponentInternalInstance } from 'vue';
-import { ComponentInfo } from '../types/ComponentInfo';
+import { ComponentInternalInstance } from "vue";
+import { ComponentInfo } from "../types/ComponentInfo";
 
 const isFragment = (instance: ComponentInternalInstance) => {
-  return typeof instance?.subTree?.type !== 'string';
+  return typeof instance?.subTree?.type !== "string";
 };
 const getFragmentDiv = (instance: ComponentInternalInstance | any) =>
   instance.subTree.dynamicChildren[0].el.parentElement;
 const getComponentName = (type: any, fileName: string) =>
-  type?.name ? type.name : fileName?.split('.')[0] || '';
+  type?.name ? type.name : fileName?.split(".")[0] || "";
 
 const getFileName = (filePath: string) =>
-  filePath?.substring(filePath.lastIndexOf('/') + 1);
+  filePath?.substring(filePath.lastIndexOf("/") + 1);
 export const setParentsHierarchy = (
   currentInstance: ComponentInternalInstance,
   array?: string[]
@@ -21,7 +21,7 @@ export const setParentsHierarchy = (
     setParentsHierarchy(item, arr);
     const name: string = getComponentName(
       item.type,
-      getFileName(item?.type.__file || '')
+      getFileName(item?.type.__file || "")
     );
     arr.push(name.toLocaleLowerCase());
   }
@@ -33,7 +33,7 @@ export function getComponentInfo(
   queueName: string
 ): ComponentInfo {
   if (!currentInstance) ({} as ComponentInfo);
-  const file: string = currentInstance?.type.__file || '';
+  const file: string = currentInstance?.type.__file || "";
   const type = currentInstance?.type;
   const fileName = getFileName(file);
   //const typelessInstance: any = currentInstance;
