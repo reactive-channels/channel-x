@@ -1,6 +1,8 @@
 <template>
   <div class="tabs__content">
-    <component :content="content" :is="scope"> </component>
+    <KeepAlive>
+      <component :content="content" :is="scope"> </component>
+    </KeepAlive>
   </div>
 </template>
 <script lang="ts" setup>
@@ -21,6 +23,6 @@ const props = defineProps({
 </script>
 <style scoped>
 .tabs__content {
-  flex: 1;
+  height: 100%;
 }
 </style>

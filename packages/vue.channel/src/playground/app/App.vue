@@ -3,6 +3,10 @@
     <div class="app">
       <Menu />
       <Content />
+      <Content />
+      <Menu />
+      <Content />
+      <Content />
     </div>
     <Devtool class="bottom" />
   </div>

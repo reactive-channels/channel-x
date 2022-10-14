@@ -10,6 +10,7 @@ import { Channel } from "@channel-x/vue-channel";
 let data = "";
 const save = () => {
   Channel.use("new").publish(data);
+  Channel.use("payment").publish(data);
 };
 const change = (item: any) => {
   data = item.target.value;
