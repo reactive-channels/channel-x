@@ -160,7 +160,7 @@ export class Channel extends CoreChannel {
     });
 
     //console.log('el', this.componentInfo?.instance.vnode.el);
-    stream = super.consume().subscribe(action);
+    if (action) stream = super.consume().subscribe((x) => action(x));
 
     // return { msg, queueName: super.queueName };
     onBeforeUnmount(() => {

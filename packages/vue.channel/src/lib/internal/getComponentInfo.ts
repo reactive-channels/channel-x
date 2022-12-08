@@ -29,15 +29,12 @@ export const setParentsHierarchy = (
 };
 
 export function getComponentInfo(
-  currentInstance: ComponentInternalInstance,
-  queueName: string
+  currentInstance: ComponentInternalInstance
 ): ComponentInfo {
   if (!currentInstance) ({} as ComponentInfo);
   const file: string = currentInstance?.type.__file || "";
   const type = currentInstance?.type;
   const fileName = getFileName(file);
-  //const typelessInstance: any = currentInstance;
-
   const componentInfo: ComponentInfo = {
     filePath: file,
     fileName,
@@ -52,7 +49,6 @@ export function getComponentInfo(
       ? getFragmentDiv(currentInstance)
       : currentInstance.vnode.el,
     uid: currentInstance.uid,
-    queueName,
   };
   return componentInfo;
 }

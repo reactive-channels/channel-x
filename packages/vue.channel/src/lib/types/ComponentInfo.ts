@@ -12,5 +12,5 @@ export interface ComponentInfo {
   uid: number;
   parent: any;
   parentsHierarchy: string[];
-  queueName: string;
+  queues?: any;
 }

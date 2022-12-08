@@ -3,9 +3,12 @@
     <div class="components__zone">
       <div
         class="components__zone__item"
+        :class="{ 'components__zone__item--active': item === activeItem }"
         v-for="(item, key, index) in components"
         :key="key"
         @click="showInfo(item)"
+        @mouseleave="mouseleaveComponent(item.info)"
+        @mouseover="showComponent(item.info)"
       >
         <div>
           <!-- <span>&lt</span> -->
@@ -15,12 +18,18 @@
         </div>
       </div>
     </div>
-    <div class="components__info"></div>
+    <div class="components__info">
+      <Tabs :items="items"> </Tabs>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { PropType, ref, watchEffect } from "vue";
-let components: any = ref({});
+import { capitalize } from "../../../utils/helpers";
+import Tabs from "../../tabs/Tabs.vue";
+const components: any = ref({});
+const activeItem: any = ref({});
+const items: any = ref([{}]);
 const props = defineProps({
   content: {
     type: Object as PropType<any>,
@@ -32,16 +41,46 @@ const emit = defineEmits<{
 }>();
 
 watchEffect(() => {
-  console.log("props.content", props.content);
-  components.value = { ...components.value, ...props.content };
+  const componentsList = props.content["components"];
+
+  components.value = { ...components.value, ...componentsList };
 });
 const showInfo = (item: any) => {
+  const info = item.info.instance.channelx;
+  items.value = Object.keys(info).map((key, index) => ({
+    type: capitalize(key),
+    content: info[key],
+  }));
+  activeItem.value = item;
   emit("component-info", item);
 };
-const tabs = [
-  { type: "PUBLISHERS", content: { name: "1" } },
-  { type: "CONSUMERS", content: { name: "2" } },
-];
+const showComponent = (item: any) => {
+  //const CSSStyleDeclaration = item.el.style;
+  // item.oldStyle = CSSStyleDeclaration;
+  //item.el.style.setProperty('background-color', 'red', 'important');
+  //item.el.style.setProperty('background-color', 'red', 'important');
+  // const org_html = item.el.innerHTML;
+  // const new_html = "<div class='overlay'>" + org_html + '</div>';
+  // item.el.innerHTML = new_html;
+  if (!item) return;
+  item.el.classList.add("overlay");
+  const rect = item.el.getBoundingClientRect();
+  item.el.setAttribute(
+    "data-component-info",
+    item.componentName.toUpperCase() +
+      " ( " +
+      (rect.width % 1 ? rect.width.toFixed(2) : rect.width) +
+      " X " +
+      (rect.height % 1 ? rect.height.toFixed(2) : rect.height) +
+      " ) "
+  );
+  // item.el.insertBefore
+};
+const mouseleaveComponent = (item: any) => {
+  //item.el.style = item.oldStyle;
+  item.el.classList.remove("overlay");
+  item.el.removeAttribute("data-component-info");
+};
 </script>
 <style scoped>
 .components {
@@ -56,8 +95,6 @@ const tabs = [
 .components__info {
   flex: 1;
   background: #8b6a88;
-  box-shadow: 0px 0px 1px black;
-  z-index: -999999;
 }
 .components__zone {
   display: flex;
@@ -79,5 +116,9 @@ const tabs = [
 }
 .components__zone__item_sup {
   font-size: 10px;
+}
+.components__zone__item--active {
+  background: #8b6a88;
+  color: white;
 }
 </style>

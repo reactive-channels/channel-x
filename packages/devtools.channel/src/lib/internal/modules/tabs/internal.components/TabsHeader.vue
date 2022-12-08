@@ -27,6 +27,7 @@ const props = defineProps({
   },
 });
 const setActiveTab = (index: number) => {
+  console.log("index", index);
   emit("set-active-tab", index);
 };
 </script>
@@ -37,7 +38,7 @@ const setActiveTab = (index: number) => {
   flex-direction: row;
   background-color: #eee;
   border-bottom: 1px solid #ccc;
-  box-shadow: 0 1px 2px 0px grey;
+  /* box-shadow: 0 1px 2px 0px grey; */
 }
 .tabs__header__tab {
   padding: 10px;

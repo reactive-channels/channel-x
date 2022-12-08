@@ -1,15 +1,22 @@
 import { ComponentInternalInstance } from "vue";
 import { getComponentInfo } from "./getComponentInfo";
 
+interface channelx {
+  channelx: any;
+}
+
 export function setQueueInfo(
   queues: any,
   queueName: string,
-  instance: ComponentInternalInstance,
+  instance: ComponentInternalInstance & channelx,
   channelType: any
 ) {
   const queue: any = queues[queueName];
-  const componentData: any = getComponentInfo(instance, queueName);
+  const componentData: any = getComponentInfo(instance);
   const COMPONENT_KEY = `${componentData.componentName}(uid:${componentData.uid})`;
+  instance.channelx = instance.channelx || {};
+  instance.channelx[channelType] = instance.channelx[channelType] || [];
+  instance.channelx[channelType].push(queueName);
   queue.devtools = queue.devtools || { components: {}, channels: {} };
   queue.platform = "VUE";
   // queue.name = queueName;

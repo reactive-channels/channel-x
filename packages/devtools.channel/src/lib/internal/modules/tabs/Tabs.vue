@@ -5,19 +5,20 @@
       :active-tab="activeTab"
       @set-active-tab="setActiveTab"
     />
-    <Tab
-      :content="items[activeTab].content"
-      :type="items[activeTab].type"
-    ></Tab>
+    <Tab :content="activeItem.content" :type="activeItem.type"></Tab>
   </div>
 </template>
 <script lang="ts" setup>
+import { computed } from "@vue/reactivity";
 import { PropType, ref } from "vue";
 import { Tab, TabsHeader } from "./internal.components";
 const activeTab = ref(0);
 const setActiveTab = (index: number) => {
   activeTab.value = index;
 };
+const activeItem = computed(
+  () => props.items?.[activeTab.value] || props.items[0]
+);
 const props = defineProps({
   items: {
     type: Array as PropType<any[]>,

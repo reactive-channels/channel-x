@@ -3,7 +3,7 @@
     <KeepAlive>
       <component
         @component-info="onComponentInfo"
-        :content="boundedContext"
+        :content="content"
         :is="scope"
       >
       </component>
@@ -25,9 +25,7 @@ const props = defineProps({
     required: true,
   },
 });
-const boundedContext = computed(() =>
-  props.type ? props.content[props.type.toLowerCase()] : {}
-);
+
 const onComponentInfo = (info) => {
   const devtools = props.content;
   const component = devtools.components[info.uid];
