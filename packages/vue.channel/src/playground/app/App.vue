@@ -6,6 +6,7 @@
       <!-- <Content /> -->
       <Menu />
       <Content />
+      <Left />
       <!-- <Content /> -->
     </div>
     <Devtool class="bottom" />
@@ -16,6 +17,7 @@
 // import Devtool from "../../lib/devtools/Devtool.vue";
 import Devtool from "@channel-x/devtools/src/lib/Devtool.vue";
 import Content from "./components/Content/Content.vue";
+import Left from "./components/Left/Left.vue";
 import Menu from "./components/Menu/Menu.vue";
 </script>
 

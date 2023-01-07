@@ -51,7 +51,7 @@ const showInfo = (item: any) => {
     type: capitalize(key),
     content: info[key],
   }));
-  items.value.push({ type: "Diagrams", content: { name: "" } });
+  items.value.push({ type: "Diagrams", content: info });
   activeItem.value = item;
   emit("component-info", item);
 };
@@ -94,7 +94,7 @@ const mouseleaveComponent = (item: any) => {
   height: 100%;
 }
 .components__info {
-  flex: 1;
+  flex: 2;
   background: #8b6a88;
 }
 .components__zone {

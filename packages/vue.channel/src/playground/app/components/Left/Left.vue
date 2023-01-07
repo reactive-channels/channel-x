@@ -7,12 +7,15 @@ const props = defineProps({
   qData1: Object,
 });
 const { msg } = Channel.use("data").consumer;
+Channel.use("new3").consume((x) => {
+  console.log("new3", x);
+});
 </script>
 
-<!--<style>
+<style scoped>
 .left {
   border: 1px solid black;
   width: 50px;
   height: 50px;
 }
-</style>-->
+</style>

@@ -35,5 +35,6 @@ const onComponentInfo = (info) => {
 <style scoped>
 .tabs__content {
   height: 100%;
+  overflow: scroll;
 }
 </style>
