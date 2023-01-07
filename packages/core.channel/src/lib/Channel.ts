@@ -143,10 +143,10 @@ export class Channel {
     return this;
   }
 
-  // public static getQueues() {
-  //   console.log('queues', Channel.broker.queues);
-  //   return Channel.broker.queues;
-  // }
+  public static getQueues() {
+    console.log("queues", Channel.broker.queues);
+    return Channel.broker.queues;
+  }
 
   public static getExchanges() {
     return Channel.exchanges;
