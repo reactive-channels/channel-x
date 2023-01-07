@@ -9,7 +9,6 @@ import { ref } from "vue";
 import Tabs from "./internal/modules/tabs/Tabs.vue";
 const tabs = ref([{}]);
 Channel.innerUse("devtool").consume((data) => {
-  console.log("data", data);
   setTimeout(() => {
     tabs.value = [
       { type: "Components", content: data.devtools },
