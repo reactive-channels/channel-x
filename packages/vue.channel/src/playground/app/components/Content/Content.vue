@@ -12,7 +12,9 @@ import { ref } from "vue";
 let data = "";
 const success = ref("");
 const save = () => {
-  Channel.use("new").publish({ msg: data, onSuccess: onsuccess });
+  Channel.use("new")
+    .setEndpoint("https://dog.ceo/api/breeds/image/random")
+    .publish({ msg: data, onSuccess: onsuccess });
   Channel.use("payment").publish(data);
 };
 const onsuccess = (data: any) => {

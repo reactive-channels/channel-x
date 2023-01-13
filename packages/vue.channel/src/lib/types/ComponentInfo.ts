@@ -3,6 +3,7 @@ import { ComponentInternalInstance, RendererNode, VNode } from "vue";
 export interface ComponentInfo {
   filePath: string;
   fileName: string;
+  httpInfo: any;
   componentName: string;
   isFragment: boolean;
   subTree: VNode;

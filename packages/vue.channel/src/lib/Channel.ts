@@ -1,4 +1,7 @@
+import { HttpInfo } from "./../../../core.channel/src/lib/types/HttpInfo";
+
 import { Channel as CoreChannel } from "@channel-x/core-channel";
+import { Endpoint } from "packages/core.channel/src/lib/types/Endpoint";
 import { BehaviorSubject, ReplaySubject, Subscription } from "rxjs";
 import {
   ComponentInternalInstance,
@@ -88,7 +91,13 @@ export class Channel extends CoreChannel {
   private setInfo(infoType: InfoType) {
     const instance = getCurrentInstance();
     if (instance) {
-      setQueueInfo(this.queues, this.queueName, instance, infoType);
+      setQueueInfo(
+        this.queues,
+        this.queueName,
+        instance,
+        infoType,
+        this.HttpInfo
+      );
     } else {
       console.error("instance is undefined");
     }
@@ -146,6 +155,12 @@ export class Channel extends CoreChannel {
       this.setInfo(InfoType.PUBLISHERS);
     });
     return super.publish(msg, cb);
+  }
+
+  setEndpoint(endpoint: Endpoint | string): Channel {
+    this.httpInfo = super.setEndpoint(endpoint, false) as HttpInfo;
+
+    return this;
   }
   public pipe(...pipes: any): Channel {
     this.operators = pipes;

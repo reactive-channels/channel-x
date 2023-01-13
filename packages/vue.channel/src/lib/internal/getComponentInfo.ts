@@ -29,7 +29,8 @@ export const setParentsHierarchy = (
 };
 
 export function getComponentInfo(
-  currentInstance: ComponentInternalInstance
+  currentInstance: ComponentInternalInstance,
+  httpInfo: any
 ): ComponentInfo {
   if (!currentInstance) ({} as ComponentInfo);
   const file: string = currentInstance?.type.__file || "";
@@ -37,6 +38,7 @@ export function getComponentInfo(
   const fileName = getFileName(file);
   const componentInfo: ComponentInfo = {
     filePath: file,
+    httpInfo,
     fileName,
     isFragment: isFragment(currentInstance),
     subTree: currentInstance.subTree,

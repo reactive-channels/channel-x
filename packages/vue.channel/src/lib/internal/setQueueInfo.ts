@@ -9,10 +9,11 @@ export function setQueueInfo(
   queues: any,
   queueName: string,
   instance: ComponentInternalInstance & channelx,
-  channelType: any
+  channelType: any,
+  httpInfo: any
 ) {
   const queue: any = queues[queueName];
-  const componentData: any = getComponentInfo(instance);
+  const componentData: any = getComponentInfo(instance, httpInfo);
   const COMPONENT_KEY = `${componentData.componentName}(uid:${componentData.uid})`;
   instance.channelx = instance.channelx || {};
   instance.channelx[channelType] = instance.channelx[channelType] || [];

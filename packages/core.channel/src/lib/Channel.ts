@@ -92,7 +92,7 @@ export class Channel {
 
   private exchangeType: ExchangeType = ExchangeType.fanout;
 
-  private httpInfo: HttpInfo = { url: "", func: null } as HttpInfo;
+  protected httpInfo: HttpInfo = { url: "", func: null } as HttpInfo;
 
   public static use(queueName: string, options?: any): Channel {
     return new Channel(
@@ -217,9 +217,12 @@ export class Channel {
     this.httpInfo = { url: "" } as HttpInfo;
   }
 
-  setEndpoint(endpoint: Endpoint | string): Channel {
+  protected setEndpoint(
+    endpoint: Endpoint | string,
+    isCore = true
+  ): Channel | HttpInfo {
     this.httpInfo = setHttpInfo(endpoint);
-
+    if (!isCore) return this.httpInfo;
     return this;
   }
 
@@ -246,7 +249,7 @@ export class Channel {
       const streamFunc = funcItem.builder(stream);
       return streamFunc(funcItem.functionBody);
     });
-    return d[0];
+    return d[0]; // for now only one pipe
   }
   private async getHttpResult() {
     let result = "";

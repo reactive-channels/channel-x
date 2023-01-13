@@ -51,7 +51,8 @@ const showInfo = (item: any) => {
     type: capitalize(key),
     content: info[key],
   }));
-  items.value.push({ type: "Diagrams", content: info });
+  items.value.push({ type: "Http", content: item });
+  items.value.push({ type: "Diagrams", content: item });
   activeItem.value = item;
   emit("component-info", item);
 };
