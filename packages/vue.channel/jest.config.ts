@@ -1,14 +1,14 @@
 module.exports = {
-  displayName: 'vue.channel',
-  preset: '../../jest.preset.js',
+  displayName: "vue.channel",
+  preset: "../../jest.preset.js",
   transform: {
-    '^.+\\.vue$': './deps/vue3-jest',
-    '^.+\\.[jt]sx?$': 'ts-jest',
+    "^.+\\.vue$": "./deps/vue3-jest",
+    "^.+\\.[jt]sx?$": "ts-jest",
   },
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   testTimeout: 10000,
 };

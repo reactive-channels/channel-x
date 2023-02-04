@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "types": ["node", "jest"],
     "strict": true,
     "allowJs": true,
     "jsx": "preserve",

@@ -21,6 +21,28 @@ export class Channel {
   // protected static get queues() {
   //   return Channel._queues;
   // }
+  static classForTestsOnly(
+    queueName: string,
+    stream: BehaviorSubject<unknown> | ReplaySubject<unknown>,
+    options?: any
+  ) {
+    return new Channel(queueName, stream, options);
+  }
+  get propsForTestsOnly() {
+    return {
+      queueName: this.queueName,
+      queueContext: this.queueContext,
+      subscriptions: this.subscriptions,
+      operators: this.operators,
+      builders: this.builders,
+      tempData: this.tempData,
+      queues: this.queues,
+      emitters: this.emitters,
+      exchangeName: this.exchangeName,
+      exchangeType: this.exchangeType,
+      httpInfo: this.httpInfo,
+    };
+  }
 
   public static publishTo(queueName: string, msg: any) {
     if (Channel.broker.queues[queueName]) {

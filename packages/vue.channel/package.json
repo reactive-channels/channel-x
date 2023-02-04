@@ -24,6 +24,7 @@
         "@types/node": "16.11.7"
     },
     "dependencies": {
+        "ts-mockito": "^2.6.1",
         "vue-router": "^4.1.5"
     }
 }

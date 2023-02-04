@@ -5,6 +5,6 @@
     "declaration": true,
     "types": []
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "jest.config.cjs,", "src/lib/channel.spec.ts", "jest.config.tsts", "jest.config.tsts", "jest.config.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
