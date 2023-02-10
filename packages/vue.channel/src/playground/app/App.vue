@@ -9,7 +9,7 @@
       <Left />
       <!-- <Content /> -->
     </div>
-    <Devtool class="bottom" />
+    <Devtool />
   </div>
 </template>
 
@@ -21,12 +21,4 @@ import Left from "./components/Left/Left.vue";
 import Menu from "./components/Menu/Menu.vue";
 </script>
 
-<style scoped>
-.bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 300px;
-}
-</style>
+<style scoped></style>

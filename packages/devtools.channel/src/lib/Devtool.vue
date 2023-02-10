@@ -1,5 +1,5 @@
 <template>
-  <div class="devtools-container">
+  <div class="devtools-container bottom">
     <Tabs :items="tabs" />
   </div>
 </template>
@@ -24,5 +24,13 @@ Channel.innerUse("devtool").consume((data) => {
   border: 1px solid #ccc;
   width: 100%;
   height: 100%;
+  background: gray;
+}
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
 }
 </style>

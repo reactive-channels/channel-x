@@ -1,0 +1,1 @@
+export { mapMetaData } from './mapMetaData';
