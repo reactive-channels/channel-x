@@ -5,25 +5,17 @@ import { Endpoint } from "packages/core.channel/src/lib/types/Endpoint";
 import { BehaviorSubject, ReplaySubject, Subscription } from "rxjs";
 
 import { setParentsHierarchy } from "./internal/getComponentInfo";
-import { setQueueInfo } from "./internal/setQueueInfo";
 import { ComponentInfo } from "./types/ComponentInfo";
-import { InfoType } from "./types/InfoType";
 
 export class Channel extends CoreChannel {
   private componentInfo!: ComponentInfo;
   private devtools: any;
-  // public static queues :any= reactive(Channel.queues);
   public static use(queueName: string, options?: any): Channel {
-    onMounted(() => {
-      const instane = getCurrentInstance();
-    });
+    // onMounted(() => {
+    //   const instane = getCurrentInstance();
+    // });
 
-    return new Channel(
-      queueName,
-      // new BehaviorSubject(this.subjectOptions.INIT_VALUE),
-      new ReplaySubject(20),
-      options
-    );
+    return new Channel(queueName, new ReplaySubject(20), options);
   }
 
   public setEmitter(path: any, options?: any) {
@@ -46,31 +38,7 @@ export class Channel extends CoreChannel {
 
   public static emit(msg: any, options?: any) {
     console.warn("please use the plugin");
-    // const channel = new Channel('emitter', new ReplaySubject(20), {});
-    // onMounted(() => {
-    //   const instance = getCurrentInstance();
-    //   const file: string = instance?.type.__file || '';
-    //   const type = instance?.type;
-    //   const name: string = instance
-    //     ? setParentsHierarchy(instance).join('.')
-    //     : '';
-    //   const channel = new Channel(
-    //     'emit:' + name.toLocaleLowerCase(),
-    //     new ReplaySubject(20),
-    //     options
-    //   );
-
-    //   channel.publish(msg);
-    // });
   }
-
-  // public static get queues(): any {
-  //   return reactive(Channel._queues);
-  // }
-
-  // public getQueues() {
-  //   return Channel.broker.queues;
-  // }
 
   private constructor(
     queueName: string,
@@ -82,29 +50,22 @@ export class Channel extends CoreChannel {
     //console.log('vue 3');
   }
 
-  private setInfo(infoType: InfoType) {
-    const instance = getCurrentInstance();
-    if (instance) {
-      setQueueInfo(
-        this.queues,
-        this.queueName,
-        instance,
-        infoType,
-        this.HttpInfo
-      );
-    } else {
-      console.error("instance is undefined");
-    }
-  }
-  // public static useFromStream(subject: any, queueName: string) {
-  //   const channel = Channel.use(queueName);
-  //   subject.subscribe((x: any) => {
-  //     channel.pipe(from(x));
-  //   });
-  //   return channel;
+  // private setInfo(infoType: InfoType) {
+  //   const instance = getCurrentInstance();
+  //   if (instance) {
+  //     setQueueInfo(
+  //       this.queues,
+  //       this.queueName,
+  //       instance,
+  //       infoType,
+  //       this.HttpInfo
+  //     );
+  //   } else {
+  //     console.error("instance is undefined");
+  //   }
   // }
 
-  getEmitterQName(instance: ComponentInternalInstance) {
+  getEmitterQName(instance: any) {
     const file: string = instance?.type.__file || "";
     const type = instance?.type;
     const name: string = instance
@@ -113,7 +74,7 @@ export class Channel extends CoreChannel {
     return "emitter:" + name.toLocaleLowerCase();
   }
 
-  replaceEmitterQueue(instance: ComponentInternalInstance) {
+  replaceEmitterQueue(instance: any) {
     if (this.queueName !== "emitter") return;
     const oldQueueName = this.queueName + "";
     this.queueName = this.getEmitterQName(instance);
@@ -123,31 +84,21 @@ export class Channel extends CoreChannel {
     }
   }
 
-  public assign(type: InfoType) {
-    onMounted(() => {
-      const instance = getCurrentInstance();
-      if (instance) this.replaceEmitterQueue(instance);
-      this.setInfo(type);
-    });
-  }
-
-  // public triggerEmit(val) {
-  //   console.log('triggerEmit', val);
-
-  //   // this.replaceEmitterQueue(getCurrentInstance());
+  // public assign(type: InfoType) {
+  //   onMounted(() => {
+  //     const instance = getCurrentInstance();
+  //     if (instance) this.replaceEmitterQueue(instance);
+  //     this.setInfo(type);
+  //   });
   // }
 
-  public on(path: string) {
-    // const pathItems = path.split('->'); // example 'parent->child->grandchild'
-    // if (pathItems.length) {
-    // }
-  }
+  public on(path: string) {}
 
   public publish<T>(msg?: T, cb?: VoidFunction): Promise<any> {
-    onMounted(() => {
-      // this.replaceEmitterQueue(getCurrentInstance());
-      this.setInfo(InfoType.PUBLISHERS);
-    });
+    // onMounted(() => {
+
+    //   this.setInfo(InfoType.PUBLISHERS);
+    // });
     return super.publish(msg, cb);
   }
 
@@ -163,43 +114,43 @@ export class Channel extends CoreChannel {
 
   public consume(action?: (...params: any[]) => any): any {
     //  const msg = ref('');
+    console.log("this", this);
     let stream: Subscription | any;
-    onMounted(() => {
-      this.setInfo(InfoType.CONSUMERS);
-    });
+    // onMounted(() => {
+    //   this.setInfo(InfoType.CONSUMERS);
+    // });
 
     //console.log('el', this.componentInfo?.instance.vnode.el);
     if (action) stream = super.consume().subscribe((x) => action(x));
 
     // return { msg, queueName: super.queueName };
-    onBeforeUnmount(() => {
-      stream.unsubscribe();
-      // console.log('onBeforeUnmount');
-    });
+    // onBeforeUnmount(() => {
+    //   stream.unsubscribe();
+    //   // console.log('onBeforeUnmount');
+    // });
     ``;
   }
 
   public get consumer() {
-    const history: any = ref([]);
-    const msg: any = ref("");
+    //const history: any = ref([]);
+    //const msg: any = ref("");
     let stream: Subscription | any;
     // add option to unref
     stream = super.consume().subscribe((x: unknown) => {
-      history.value.push(x);
-      msg.value = x;
+      //  history.value.push(x);
+      //  msg.value = x;
     });
-    onMounted(() => {
-      this.setInfo(InfoType.CONSUMERS);
-    });
-    onBeforeUnmount(() => {
-      stream.unsubscribe();
-      // console.log('onBeforeUnmount');
-    });
+    // onMounted(() => {
+    //   this.setInfo(InfoType.CONSUMERS);
+    // });
+    // onBeforeUnmount(() => {
+    //   stream.unsubscribe();
+    // });
 
     return {
-      msg,
+      // msg,
       history,
-      unRefValue: () => msg.value,
+      //  unRefValue: () => msg.value,
       queueName: super.queueName,
     };
   }
