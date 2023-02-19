@@ -9,8 +9,7 @@ function A() {
         setMessage(event.target.value)
     }
 
-  function sendMsg(msg:any){
-
+  function sendMsg( msg:any){
     Channel.use('test').publish(message)
   }
 

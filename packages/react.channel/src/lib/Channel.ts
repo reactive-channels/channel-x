@@ -94,7 +94,8 @@ export class Channel extends CoreChannel {
 
   public on(path: string) {}
 
-  public publish<T>(msg?: T, cb?: VoidFunction): Promise<any> {
+  public publish<T>(msg?: T, cb?: VoidFunction, context?: any): Promise<any> {
+    console.log("context", context);
     // onMounted(() => {
 
     //   this.setInfo(InfoType.PUBLISHERS);

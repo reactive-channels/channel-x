@@ -4,29 +4,46 @@ import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
 
 const customPlugin = ({ root, write }) => {
-  // console.log("root", root);
   return {
     name: "custom-plugin",
     test: /\.(tsx|jsx)$/,
     transform(content, ctx) {
       // console.log("ctx", ctx);
       // Process the content of the file here and extract the relevant information you want
-
+      // Only process files in the root directory
+      // console.log("ctx", ctx);
+      // console.log("root", root);
+      if (!ctx.startsWith(root)) {
+        return { code: content };
+      }
       const store = {};
       const lines = content.split("\n");
+      // if (
+      //   ctx !==
+      //   "/Users/studio/Documents/Projects/channel-x/packages/react.channel/src/components/A.tsx"
+      // )
+      //  return { code: content };
       lines.forEach((line) => {
-        if (line.includes("Channel.")) {
-          const channelName = line.split(" ")[1];
+        if (line.includes("Channel.use")) {
+          const regex = /use\("([^"]+)"\)/;
+          const match = line.match(regex);
+          const channelName = match ? match[1] : null;
           if (typeof channelName === "string" && channelName) {
-            // Get the filename and path from the File metadata
-            const fileName = ctx.fileName;
-            const filePath = ctx.root;
+            console.log("channelName", channelName);
 
+            const regex = /\/(\w+)\.[tj]sx?$/;
+            const match = ctx.match(regex);
+            const fileName = match ? match[1] : null;
+
+            //const fileName = ctx.fileName;
+            //const filePath = ctx.root;
+            console.log("fileName", fileName);
+            //  console.log("filePath", filePath);
             // Store the information in the store object
-            store[channelName] = { fileName, filePath };
-            console.log("store", store);
-            globalThis.store = globalThis.store || {};
-            globalThis.store = store;
+            //store[channelName] = { fileName, filePath };
+            // console.log("store", store);
+            //  globalThis.store = globalThis.store || {};
+            //globalThis.store = store;
           }
         }
       });
