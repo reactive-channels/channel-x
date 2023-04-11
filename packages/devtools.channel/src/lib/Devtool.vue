@@ -9,6 +9,7 @@ import { ref } from "vue";
 import Tabs from "./internal/modules/tabs/Tabs.vue";
 const tabs = ref([{}]);
 Channel.innerUse("devtool").consume((data) => {
+  console.log("devtool", data);
   setTimeout(() => {
     tabs.value = [
       { type: "Components", content: data.devtools },
@@ -24,7 +25,7 @@ Channel.innerUse("devtool").consume((data) => {
   border: 1px solid #ccc;
   width: 100%;
   height: 100%;
-  background: gray;
+  background: white;
 }
 .bottom {
   position: absolute;

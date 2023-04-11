@@ -3,6 +3,42 @@ import veauryVitePlugins from "veaury/vite/index.js";
 import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
 
+const customPlugin2 = ({ root, write }) => {
+  return {
+    name: "custom-plugin",
+    test: /\.(tsx|jsx)$/,
+    transform(content, ctx) {
+      if (!ctx.startsWith(root)) {
+        return { code: content };
+      }
+
+      // Match Channel.use('...').consumer() in the file
+      const regex = /(Channel\.use\("([^"]+)"\))\.consumer\(\)/g;
+
+      const newContent = content.replace(
+        regex,
+        (match, useExpression, channelName) => {
+          // Get the file name without the extension
+          const fileName = ctx
+            .replace(root, "")
+            .replace(/\/(\w+)\.[tj]sx?$/, "$1");
+
+          // Replace Channel.use('...').consumer() with Channel.use('...').consumer('fileName', 'channelName')
+          const instance = {
+            type: {
+              __file: fileName,
+            },
+          };
+          const currentInstance = JSON.stringify(instance);
+          return `${useExpression}.consumer({ type: { __file: "${fileName}" } })`;
+        }
+      );
+
+      return { code: newContent };
+    },
+  };
+};
+
 const customPlugin = ({ root, write }) => {
   return {
     name: "custom-plugin",
@@ -57,7 +93,7 @@ export default defineConfig({
   plugins: [
     // react(),
     babel(),
-    customPlugin({ root: __dirname, write: true }),
+    customPlugin2({ root: __dirname, write: true }),
     veauryVitePlugins({
       type: "react",
       // Configuration of @vitejs/plugin-vue

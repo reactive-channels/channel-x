@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import { HttpInfo } from "./../../../core.channel/src/lib/types/HttpInfo";
 
 import { Channel as CoreChannel } from "@channel-x/core-channel";
-import { Endpoint } from "packages/core.channel/src/lib/types/Endpoint";
 import { BehaviorSubject, ReplaySubject, Subscription } from "rxjs";
 
+import { Endpoint } from "@channel-x/core-channel/src/lib/types/Endpoint";
 import { setParentsHierarchy } from "./internal/getComponentInfo";
+import { getReactContainer } from "./internal/getReactContainer";
+import { setQueueInfo } from "./internal/setQueueInfo";
 import { ComponentInfo } from "./types/ComponentInfo";
+import { InfoType } from "./types/InfoType";
 
 export class Channel extends CoreChannel {
   private componentInfo!: ComponentInfo;
@@ -50,20 +54,19 @@ export class Channel extends CoreChannel {
     //console.log('vue 3');
   }
 
-  // private setInfo(infoType: InfoType) {
-  //   const instance = getCurrentInstance();
-  //   if (instance) {
-  //     setQueueInfo(
-  //       this.queues,
-  //       this.queueName,
-  //       instance,
-  //       infoType,
-  //       this.HttpInfo
-  //     );
-  //   } else {
-  //     console.error("instance is undefined");
-  //   }
-  // }
+  private setInfo(infoType: InfoType, instance: any) {
+    if (instance) {
+      setQueueInfo(
+        this.queues,
+        this.queueName,
+        instance,
+        infoType,
+        this.httpInfo
+      );
+    } else {
+      console.error("instance is undefined");
+    }
+  }
 
   getEmitterQName(instance: any) {
     const file: string = instance?.type.__file || "";
@@ -132,12 +135,21 @@ export class Channel extends CoreChannel {
     ``;
   }
 
-  public get consumer() {
+  public consumer(instance?: any) {
+    // const currentInstance = JSON.parse(instance);
+    window.getReactContainer = getReactContainer;
+    const container = getReactContainer("#root");
+    console.log("container", container);
+    console.log("currentInstance", instance);
+    this.setInfo(InfoType.CONSUMERS, instance);
     //const history: any = ref([]);
-    //const msg: any = ref("");
+    const [msg, setMessage] = useState("");
     let stream: Subscription | any;
     // add option to unref
-    stream = super.consume().subscribe((x: unknown) => {
+    useEffect(() => {
+      stream = super.consume().subscribe((x: any) => {
+        setMessage(x);
+      });
       //  history.value.push(x);
       //  msg.value = x;
     });
@@ -147,12 +159,12 @@ export class Channel extends CoreChannel {
     // onBeforeUnmount(() => {
     //   stream.unsubscribe();
     // });
-
-    return {
-      // msg,
-      history,
-      //  unRefValue: () => msg.value,
-      queueName: super.queueName,
-    };
+    return [msg, super.queueName];
+    // return {
+    //   msg,
+    //   // history,
+    //   //  unRefValue: () => msg.value,
+    //   queueName: super.queueName,
+    // };
   }
 }

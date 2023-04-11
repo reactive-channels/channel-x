@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Channel } from "../lib/Channel";
 import "./box.css";
+
+
 function A() {
+  //const myRef = useRef(null);
+    //@ts-ignore
+ // const self=this;
+  //@ts-ignore
+  // const MyContext =useContext('');
     // const [count, setCount] = useState(0)
     const [message, setMessage] = useState('msg');
 

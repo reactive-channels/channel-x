@@ -36,21 +36,22 @@ export function getComponentInfo(
   const file: string = currentInstance?.type.__file || "";
   const type = currentInstance?.type;
   const fileName = getFileName(file);
-  const componentInfo: ComponentInfo = {
+  const componentInfo: any = {
+    //ComponentInfo = {
     filePath: file,
     httpInfo,
     fileName,
-    isFragment: isFragment(currentInstance),
-    subTree: currentInstance.subTree,
+    // isFragment: isFragment(currentInstance),
+    // subTree: currentInstance.subTree,
     instance: currentInstance,
-    parent: currentInstance.parent,
-    parentsHierarchy: setParentsHierarchy(currentInstance),
+    // parent: currentInstance.parent,
+    // parentsHierarchy: setParentsHierarchy(currentInstance),
     componentName: getComponentName(type, fileName),
-    node: currentInstance.vnode,
-    el: isFragment(currentInstance)
-      ? getFragmentDiv(currentInstance)
-      : currentInstance.vnode.el,
-    uid: currentInstance.uid,
+    // node: currentInstance.vnode,
+    // el: isFragment(currentInstance)
+    //   ? getFragmentDiv(currentInstance)
+    //   : currentInstance.vnode.el,
+    // uid: currentInstance.uid,
   };
   return componentInfo;
 }
