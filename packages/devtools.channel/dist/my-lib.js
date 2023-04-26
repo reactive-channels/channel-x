@@ -1267,12 +1267,12 @@ const En = { class: "tabs" }, xn = /* @__PURE__ */ g({
     ]));
   }
 });
-const oe = /* @__PURE__ */ T(xn, [["__scopeId", "data-v-2bb5b1be"]]), Tn = { class: "devtools-container" }, kn = /* @__PURE__ */ g({
+const oe = /* @__PURE__ */ T(xn, [["__scopeId", "data-v-2bb5b1be"]]), Tn = { class: "devtools-container bottom" }, kn = /* @__PURE__ */ g({
   __name: "Devtool",
   setup(n) {
     const e = q([{}]);
     return y.innerUse("devtool").consume((t) => {
-      setTimeout(() => {
+      console.log("devtool", t), setTimeout(() => {
         e.value = [
           { type: "Components", content: t.devtools },
           { type: "Channels", content: t.devtools },
@@ -1284,7 +1284,7 @@ const oe = /* @__PURE__ */ T(xn, [["__scopeId", "data-v-2bb5b1be"]]), Tn = { cla
     ]));
   }
 });
-const On = /* @__PURE__ */ T(kn, [["__scopeId", "data-v-6f5886d3"]]), In = /* @__PURE__ */ g({
+const On = /* @__PURE__ */ T(kn, [["__scopeId", "data-v-0adb089f"]]), In = /* @__PURE__ */ g({
   __name: "App",
   setup(n) {
     return (e, t) => (d(), _("div", null, [

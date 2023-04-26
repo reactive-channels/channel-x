@@ -1,14 +1,25 @@
+import generate from "@babel/generator";
+import { parse } from "@babel/parser";
+import traverse from "@babel/traverse";
 import path from "path";
 import veauryVitePlugins from "veaury/vite/index.js";
 import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
-
 const customPlugin2 = ({ root, write }) => {
   return {
     name: "custom-plugin",
-    test: /\.(tsx|jsx)$/,
+    test: /\.(jsx|tsx)$/,
     transform(content, ctx) {
+      if (!/\.(jsx|tsx)$/.test(ctx)) {
+        return { code: content };
+      }
+
       if (!ctx.startsWith(root)) {
+        return { code: content };
+      }
+
+      const ext = ctx?.split(".").pop();
+      if (ext === "css") {
         return { code: content };
       }
 
@@ -23,18 +34,44 @@ const customPlugin2 = ({ root, write }) => {
             .replace(root, "")
             .replace(/\/(\w+)\.[tj]sx?$/, "$1");
 
-          // Replace Channel.use('...').consumer() with Channel.use('...').consumer('fileName', 'channelName')
-          const instance = {
-            type: {
-              __file: fileName,
-            },
-          };
-          const currentInstance = JSON.stringify(instance);
           return `${useExpression}.consumer({ type: { __file: "${fileName}" } })`;
         }
       );
 
-      return { code: newContent };
+      const ast = parse(newContent, {
+        sourceType: "module",
+        plugins: ["jsx", "typescript"],
+      });
+      let componentName = "d";
+
+      const traverseFunction = traverse;
+      let hasReturnStatement = false;
+      if (!ctx.includes("B.tsx")) return { code: content };
+      let isFirstJSXElement = true;
+
+      traverseFunction.default(ast, {
+        JSXOpeningElement(path) {
+          if (isFirstJSXElement) {
+            console.log("d");
+            const openingElement = path.node.openingElement;
+
+            openingElement.attributes.push({
+              type: "JSXAttribute",
+              name: {
+                type: "JSXIdentifier",
+                name: "data-channel-x",
+              },
+              value: null,
+            });
+
+            isFirstJSXElement = false;
+          }
+        },
+      });
+      console.log("dsf");
+      const generateFunction = generate;
+      const { code } = generateFunction.default(ast, {});
+      return { code };
     },
   };
 };
@@ -96,12 +133,6 @@ export default defineConfig({
     customPlugin2({ root: __dirname, write: true }),
     veauryVitePlugins({
       type: "react",
-      // Configuration of @vitejs/plugin-vue
-      // vueOptions: {...},
-      // Configuration of @vitejs/plugin-react
-      // reactOptions: {...},
-      // Configuration of @vitejs/plugin-vue-jsx
-      // vueJsxOptions: {...}
     }),
     // {
     //   name: "swc",

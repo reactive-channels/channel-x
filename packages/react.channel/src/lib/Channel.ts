@@ -4,9 +4,8 @@ import { HttpInfo } from "./../../../core.channel/src/lib/types/HttpInfo";
 import { Channel as CoreChannel } from "@channel-x/core-channel";
 import { BehaviorSubject, ReplaySubject, Subscription } from "rxjs";
 
-import { Endpoint } from "@channel-x/core-channel/src/lib/types/Endpoint";
+// import { Endpoint } from "@channel-x/core-channel/src/lib/types/Endpoint";
 import { setParentsHierarchy } from "./internal/getComponentInfo";
-import { getReactContainer } from "./internal/getReactContainer";
 import { setQueueInfo } from "./internal/setQueueInfo";
 import { ComponentInfo } from "./types/ComponentInfo";
 import { InfoType } from "./types/InfoType";
@@ -106,7 +105,7 @@ export class Channel extends CoreChannel {
     return super.publish(msg, cb);
   }
 
-  setEndpoint(endpoint: Endpoint | string): Channel {
+  setEndpoint(endpoint: any | string): Channel {
     this.httpInfo = super.setEndpoint(endpoint, false) as HttpInfo;
 
     return this;
@@ -125,7 +124,7 @@ export class Channel extends CoreChannel {
     // });
 
     //console.log('el', this.componentInfo?.instance.vnode.el);
-    if (action) stream = super.consume().subscribe((x) => action(x));
+    if (action) stream = super.consume().subscribe((x: any) => action(x));
 
     // return { msg, queueName: super.queueName };
     // onBeforeUnmount(() => {
@@ -137,9 +136,6 @@ export class Channel extends CoreChannel {
 
   public consumer(instance?: any) {
     // const currentInstance = JSON.parse(instance);
-    window.getReactContainer = getReactContainer;
-    const container = getReactContainer("#root");
-    console.log("container", container);
     console.log("currentInstance", instance);
     this.setInfo(InfoType.CONSUMERS, instance);
     //const history: any = ref([]);

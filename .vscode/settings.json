@@ -3,6 +3,10 @@
          "editor.codeActionsOnSave": {
           "source.fixAll.eslint": true
          },
-    "eslint.validate": ["javascript","vue"]
+    "eslint.validate": [
+        "javascript",
+        "vue"
+    ],
+    "vue.features.codeActions.enable": false
 
 }
