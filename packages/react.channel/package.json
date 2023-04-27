@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.20.12",
+    "@channel-x/core-channel": "^0.0.1",
+    "@channel-x/devtools": "^0.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.0",

@@ -1,0 +1,1 @@
+{"version":3,"file":"createReactiveQueues.js","sourceRoot":"","sources":["../../../src/lib/broker/createReactiveQueues.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,oBAAoB,CAClC,MAAe,EACf,OAA0B;AAC1B,uBAAuB;AACvB,iCAAiC;;IAEjC,MAAM,KAAK,GAAG,IAAI,KAAK,CAAC,MAAM,EAAE,OAAO,CAAC,CAAC;IACzC,+BAA+B;IAC/B,OAAO,KAAK,CAAC;AACf,CAAC"}

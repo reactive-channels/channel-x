@@ -2,10 +2,14 @@
   "name": "@channel-x/core-channel",
   "version": "0.0.1",
   "type": "module",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b"
+  },
   "dependencies": {
     "rxjs": "^7.5.6",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18"

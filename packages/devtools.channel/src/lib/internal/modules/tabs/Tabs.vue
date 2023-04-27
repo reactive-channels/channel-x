@@ -9,8 +9,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from "@vue/reactivity";
-import { PropType, ref } from "vue";
+import { PropType, computed, ref } from "vue";
 import { Tab, TabsHeader } from "./internal.components";
 const activeTab = ref(0);
 const setActiveTab = (index: number) => {

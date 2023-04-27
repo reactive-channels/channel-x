@@ -1,10 +1,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "types": []
+    "types": [ "node"], 
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["**/*.ts", "jest.config.cjs,", "src/lib/channel.spec.ts", "jest.config.tsts", "jest.config.tsts", "jest.config.ts"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+  "include": [
+   "src"
+  ],
+  "exclude": ["**/*.spec.js", "**/*.spec.jsx", "**/*.spec.ts"],
 }

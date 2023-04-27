@@ -1,3 +1,4 @@
+import React from "react";
 import { Channel } from "../lib/Channel";
 import "./box.css";
 function B() {
