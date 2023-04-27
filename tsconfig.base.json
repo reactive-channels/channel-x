@@ -1,0 +1,26 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "rootDir": ".",
+      "sourceMap": true,
+      "declaration": false,
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "target": "es2015",
+      "module": "esnext",
+      "lib": ["es2017", "dom"],
+      "skipLibCheck": true,
+      "skipDefaultLibCheck": true,
+      "baseUrl": ".",
+      "paths": {
+        "@channel-x/core-channel": ["packages/core.channel/src/index.ts"],
+        "@channel-x/react-channel": ["packages/react.channel/src/index.ts"],
+        "@channel-x/vue-channel": ["packages/vue.channel/src/index.ts"],
+        "@channel-x/devtools": ["packages/devtools.channel/src/index.ts"],
+      }
+    },
+    "exclude": ["node_modules"]
+  }
+  

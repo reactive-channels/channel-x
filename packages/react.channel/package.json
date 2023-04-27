@@ -1,0 +1,29 @@
+{
+  "name": "@channel-x/react-channel",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@babel/core": "^7.20.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rxjs": "^7.8.0",
+    "veaury": "^2.3.11",
+    "vite-plugin-babel": "^1.1.3",
+    "vite-plugin-top-level-await": "^1.2.3"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.1.14",
+    "@types/node": "^18.16.1",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  }
+}

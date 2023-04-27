@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/vue.channel/types",
+    "declaration": true,
+    "types": [ "node","vue"], 
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "**/*.json"
+  ],
+  "exclude": ["**/*.spec.js", "**/*.spec.jsx", "**/*.spec.ts"],
+}

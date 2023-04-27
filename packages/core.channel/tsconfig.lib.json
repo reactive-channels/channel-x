@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "declaration": true,
+    "types": []
+  },
+  "include": ["**/*.ts", "jest.config.cjs,", "src/lib/channel.spec.ts", "jest.config.tsts", "jest.config.tsts", "jest.config.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}
