@@ -3,8 +3,7 @@ declare module '*.vue' {
   // eslint-disable-next-line
   const component: DefineComponent<{}, {}, any>;
   export default component;
-}
-
+ }
 
 interface ImportMeta {
   env: Record<string, string | undefined>;

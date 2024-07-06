@@ -6,6 +6,10 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:vue/vue3-recommended",
+    "plugin:@intlify/vue-i18n/recommended",
+    "@vue/typescript/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [],

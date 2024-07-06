@@ -1,5 +1,5 @@
 <template>
-  <slot :qData="val"> </slot>
+  <slot :qData="val" />
 </template>
 
 <script lang="ts">
